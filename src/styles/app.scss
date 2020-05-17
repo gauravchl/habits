@@ -1,0 +1,24 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga", "kern";
+  text-rendering: optimizelegibility;
+}
+
+.btn:focus,
+button:focus {
+  outline: none !important;
+}
+
+p {
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid,
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-position-x: calc(100% - 6px) !important;
+  background-position-y: center !important;
+}
