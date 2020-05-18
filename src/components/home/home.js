@@ -6,10 +6,14 @@ import Layout from "../layout";
 export default () => {
   return (
     <Layout>
-      <ButtonCircle className="mx-2 my-4">Run</ButtonCircle>
-      <ButtonCircle className="mx-2 my-4">Gym</ButtonCircle>
-      <ButtonCircle className="mx-2 my-4">Write</ButtonCircle>
-      <ButtonCircle className="mx-2 my-4">+</ButtonCircle>
+      <div className={styles.container + " mt-2"}>
+        <ButtonCircle className="mx-2 my-4">Run</ButtonCircle>
+        <ButtonCircle className="mx-2 my-4">Yoga</ButtonCircle>
+        <ButtonCircle className="mx-2 my-4">Write</ButtonCircle>
+        <ButtonCircle className="mx-2 my-4">+</ButtonCircle>
+      </div>
     </Layout>
   );
 };
+
+//#f9807d
