@@ -1,6 +1,6 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
-import Home from "./components/home";
+import Home from "./components/home/home";
 import Activity from "./components/activity";
 import history from "./history.js";
 
