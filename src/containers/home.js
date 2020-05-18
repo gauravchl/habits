@@ -6,18 +6,20 @@ export default (props) => {
   const [loading, setLoading] = useState(true);
   const [habits, setHabits] = useState();
 
-  useEffect(() => {
-    async function fetchData() {
-      let habits = await habitsModel.getAll();
-      if (!habits || !habits.length) {
-        await habitsModel.init();
-        habits = await habitsModel.getAll();
-      }
-      setHabits(habits);
-      setLoading(false);
+  const fetchData = async () => {
+    setLoading(true);
+    let habits = await habitsModel.getAll();
+    if (!habits || !habits.length) {
+      await habitsModel.init();
+      habits = await habitsModel.getAll();
     }
+    setHabits(habits);
+    setLoading(false);
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
-  return <Home loading={loading} habits={habits} />;
+  return <Home loading={loading} habits={habits} reload={fetchData} />;
 };

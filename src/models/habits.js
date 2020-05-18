@@ -9,6 +9,9 @@ export default {
 
   add: async (habit) => {
     const { name } = habit || {};
+    const habits = await lf.getItem("habits");
+    habits.push({ id: uuidv4(), name });
+    await lf.setItem("habits", habits);
   },
 
   init: async () => {
