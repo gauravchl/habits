@@ -39,7 +39,11 @@ export default (props) => {
   return (
     <Layout>
       <div className="mt-2">
-        {loading ? "loading..." : null}
+        {loading ? (
+          <h3 className="mt-5 text-primary text-center font-weight-light">
+            Loading Your Habits...
+          </h3>
+        ) : null}
         {showAddHabit ? (
           <AddHabitForm onGoBack={hideForm} onSuccess={onHabitAdded} />
         ) : null}
