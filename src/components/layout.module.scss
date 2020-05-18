@@ -1,0 +1,29 @@
+@import "../styles/_variables";
+
+.root {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: $light-blue;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  border-radius: 0 0 4px 4px;
+  background-color: $primary;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: scroll;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
