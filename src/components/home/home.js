@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./home.module.scss";
-import ButtonCircle from "./ButtonCircle";
+import HabitButton from "./HabitButton";
 import Layout from "../layout";
 import AddHabitForm from "./AddHabitForm";
 
@@ -11,18 +11,21 @@ export default (props) => {
   const getHabitButtons = () => {
     if (showAddHabit || loading || !habits || !habits.length) return null;
     const habitItems = habits.map((h) => (
-      <ButtonCircle key={h.id} className="mx-2 my-4">
-        {h.name}
-      </ButtonCircle>
+      <HabitButton
+        key={h.id}
+        className="mx-2 my-4"
+        total={21}
+        progress={Math.floor(Math.random() * 22)}
+        name={h.name}
+      />
     ));
     habitItems.push(
-      <ButtonCircle
+      <HabitButton
         key={0}
         className="mx-2 my-4"
         onClick={() => setShowAddHabit(true)}
-      >
-        +
-      </ButtonCircle>
+        name="+"
+      />
     );
     return <div className={styles.habitBtnContainer}>{habitItems}</div>;
   };
