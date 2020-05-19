@@ -1,3 +1,3 @@
 import habits from "./habits";
-
-export { habits };
+import activities from "./activities";
+export { habits, activities };
