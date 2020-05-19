@@ -28,9 +28,6 @@ export default (props) => {
     fetchData();
   }, []);
 
-  console.table(activities);
-  console.table(habits);
-
   return (
     <Home
       loading={loading}
