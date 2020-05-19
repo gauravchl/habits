@@ -13,12 +13,16 @@ export default {
     // Don't add activity if already added this day;
     const activity = activities.find(
       (activity) =>
-        isSameDay(activity.createdAt, new Date()) &&
+        isSameDay(new Date(activity.createdAt), new Date()) &&
         activity.habitId === habitId
     );
     if (activity) return;
 
-    activities.push({ id: uuidv4(), habitId, createdAt: new Date() });
+    activities.push({
+      id: uuidv4(),
+      habitId,
+      createdAt: new Date().toISOString(),
+    });
     await lf.setItem("activities", activities);
   },
 };
