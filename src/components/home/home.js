@@ -36,8 +36,8 @@ export default (props) => {
     return progress;
   };
 
-  const getHabitButtons = () => {
-    if (showAddHabit || loading || !habits || !habits.length) return null;
+  const renderHabitButtons = () => {
+    if (showAddHabit || !habits || !habits.length) return null;
     const habitItems = habits.map((h) => (
       <HabitButton
         key={h.id}
@@ -64,9 +64,8 @@ export default (props) => {
   return (
     <Layout>
       <div className="mt-2">
-        {loading ? <h3 className="mt-5 text-primary text-center font-weight-light">Loading Your Habits...</h3> : null}
         {showAddHabit ? <AddHabitForm onGoBack={hideForm} onSuccess={onHabitAdded} /> : null}
-        {getHabitButtons()}
+        {renderHabitButtons()}
       </div>
     </Layout>
   );
