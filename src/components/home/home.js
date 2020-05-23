@@ -28,7 +28,7 @@ export default (props) => {
       <div className="mt-2">
         <Filters currentFilter={currentFilter} onChange={setCurrentFilter} />
         <div className={styles.habitBtnContainer}>
-          <HabitButtons habits={habits} activities={activities} reload={reload} />
+          <HabitButtons habits={habits} activities={activities} reload={reload} currentFilter={currentFilter} />
           <HabitButton key={0} className="mx-2 my-4" onClick={() => setShowAddHabit(true)} name="+" />
         </div>
       </div>

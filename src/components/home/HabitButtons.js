@@ -1,17 +1,19 @@
 import React from 'react';
-import { isSameDay, subDays } from 'date-fns';
+import { isSameDay, subDays, getDaysInMonth, isSameWeek, getDay } from 'date-fns';
 import HabitButton from './HabitButton';
 import { activities as activitiesModel } from '../../models';
+import { filterTypes } from '../../constants';
 
 export default (props) => {
-  const { habits, activities, reload } = props;
+  const { habits = [], activities, reload, currentFilter } = props;
 
   const addNewActivity = async (habit) => {
     await activitiesModel.add(habit.id);
     reload();
   };
 
-  const getHabitProgress = (habitId) => {
+  const getStreakData = (habitId) => {
+    const total = 21;
     const habitActivities = activities && activities.filter((a) => a.habitId === habitId);
     if (!habitActivities || !habitActivities.length) return 0;
 
@@ -19,7 +21,6 @@ export default (props) => {
     const activityRecordedToday = isSameDay(new Date(), new Date(habitActivities[0].createdAt));
 
     let progress = activityRecordedToday ? 1 : 0;
-    for (let i = 0; i < habitActivities.length; i++) console.log(habitActivities[i].createdAt);
 
     for (let i = activityRecordedToday ? 1 : 0; i < habitActivities.length; i++) {
       const d1 = new Date(habitActivities[i].createdAt);
@@ -29,19 +30,54 @@ export default (props) => {
       progress++;
     }
 
-    return progress;
+    return { total, progress, label: progress };
   };
 
-  if (!habits || !habits.length) return null;
+  const getWeekData = (habitId) => {
+    const total = 7;
+    const habitActivities = activities.filter((a) => {
+      return a.habitId === habitId && isSameWeek(new Date(a.createdAt), new Date());
+    });
+    const progress = habitActivities.map((a) => getDay(new Date(a.createdAt)) + 1);
+    return { total, progress, label: progress.length };
+  };
 
-  return habits.map((h) => (
-    <HabitButton
-      key={h.id}
-      className="mx-2 my-4"
-      total={21}
-      progress={getHabitProgress(h.id)}
-      name={h.name}
-      onClick={() => addNewActivity(h)}
-    />
-  ));
+  const getMonthData = (habitId) => {
+    const total = getDaysInMonth(new Date());
+    return { total };
+  };
+  const getAllData = (habitId) => {
+    return {};
+  };
+
+  const getData = (habitId) => {
+    switch (currentFilter) {
+      case filterTypes.STREAK:
+        return getStreakData(habitId);
+      case filterTypes.WEEK:
+        return getWeekData(habitId);
+      case filterTypes.MONTH:
+        return getMonthData(habitId);
+      case filterTypes.ALL:
+        return getAllData(habitId);
+      default:
+        return null;
+    }
+  };
+
+  return habits.map((h) => {
+    const { total, progress, label } = getData(h.id);
+
+    return (
+      <HabitButton
+        key={h.id}
+        className="mx-2 my-4"
+        total={total}
+        progress={progress}
+        label={label}
+        name={h.name}
+        onClick={() => addNewActivity(h)}
+      />
+    );
+  });
 };
