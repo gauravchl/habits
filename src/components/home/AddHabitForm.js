@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styles from "./AddHabitForm.module.scss";
-import { habits as habitModel } from "../../models";
+import React, { useState } from 'react';
+import { habits as habitModel } from '../../models';
+import Layout from '../layout';
 
 export default (props) => {
   const { onGoBack, onSuccess } = props;
@@ -17,26 +17,27 @@ export default (props) => {
   };
 
   return (
-    <div className="form-group">
-      <h3 className="text-primary font-weight-light text-center my-5">
-        Create Your <span className="font-weight-bold">New Habit</span>!
-      </h3>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Give Your Habit a Name"
-        onChange={handleNameChange}
-      />
-      <button className="btn btn-primary mt-4 btn-block" onClick={handleSubmit}>
-        CREATE!
-      </button>
-      <button
-        className="btn btn-link-secondary mt-2 btn-block"
-        onClick={onGoBack}
-      >
-        Go Back
-      </button>
-    </div>
+    <Layout>
+      <div className="mt-2">
+        <div className="form-group">
+          <h3 className="text-primary font-weight-light text-center my-5">
+            Create Your <span className="font-weight-bold">New Habit</span>!
+          </h3>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Give Your Habit a Name"
+            onChange={handleNameChange}
+          />
+          <button className="btn btn-primary mt-4 btn-block" onClick={handleSubmit}>
+            CREATE!
+          </button>
+          <button className="btn btn-link-secondary mt-2 btn-block" onClick={onGoBack}>
+            Go Back
+          </button>
+        </div>
+      </div>
+    </Layout>
   );
 };
 

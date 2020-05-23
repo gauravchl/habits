@@ -1,0 +1,21 @@
+@import '../../styles/_variables';
+
+.root {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {
+  text-align: center;
+  color: $primary;
+  border-radius: 22px;
+  width: 24%;
+  padding: 8px 0;
+}
+
+.item:hover,
+.item[data-active='true'] {
+  background: $light-primary;
+  font-weight: 600;
+  cursor: pointer;
+}
