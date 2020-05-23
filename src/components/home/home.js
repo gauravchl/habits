@@ -10,7 +10,7 @@ import { filterTypes } from '../../constants';
 export default (props) => {
   const { loading, habits, activities, reload } = props;
   const [showAddHabit, setShowAddHabit] = useState();
-  const [filter, setFilter] = useState(filterTypes.STREAK);
+  const [currentFilter, setCurrentFilter] = useState(filterTypes.STREAK);
 
   const hideForm = () => {
     setShowAddHabit(false);
@@ -26,7 +26,7 @@ export default (props) => {
   return (
     <Layout>
       <div className="mt-2">
-        <Filters currentFilter={filter} onChange={setFilter} />
+        <Filters currentFilter={currentFilter} onChange={setCurrentFilter} />
         <div className={styles.habitBtnContainer}>
           <HabitButtons habits={habits} activities={activities} reload={reload} />
           <HabitButton key={0} className="mx-2 my-4" onClick={() => setShowAddHabit(true)} name="+" />
