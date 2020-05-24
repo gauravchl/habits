@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './habitCard.module.scss';
-import { MdUnarchive } from 'react-icons/md';
-import { FaArchive } from 'react-icons/fa';
+import { MdUnarchive, MdDelete } from 'react-icons/md';
 import { habits as habitsModel } from '../../models/';
 import If from 'react-simple-if';
 
@@ -23,7 +22,7 @@ export default (props) => {
       {habit.name}
       <div>
         <If exp={!archived}>
-          <FaArchive className={styles.actionBtn} size={18} onClick={handleArchivedClick} />
+          <MdDelete className={styles.actionBtn} size={22} onClick={handleArchivedClick} />
         </If>
         <If exp={archived}>
           <MdUnarchive className={styles.actionBtn} size={22} onClick={handleArchivedClick} />
