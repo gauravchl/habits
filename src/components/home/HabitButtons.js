@@ -1,5 +1,5 @@
 import React from 'react';
-import { isSameDay, subDays, getDaysInMonth, isSameWeek, getDay } from 'date-fns';
+import { isSameDay, subDays, getDaysInMonth, isSameWeek, getDay, isSameMonth, getDate } from 'date-fns';
 import HabitButton from './HabitButton';
 import { activities as activitiesModel } from '../../models';
 import { filterTypes } from '../../constants';
@@ -44,7 +44,14 @@ export default (props) => {
 
   const getMonthData = (habitId) => {
     const total = getDaysInMonth(new Date());
-    return { total };
+    const habitActivities = activities.filter((a) => {
+      return a.habitId === habitId && isSameMonth(new Date(a.createdAt), new Date());
+    });
+
+    const progress = habitActivities.map((a) => getDate(new Date(a.createdAt)));
+    const label = `${progress.length}/${total}`;
+
+    return { total, progress, label };
   };
   const getAllData = (habitId) => {
     return {};
