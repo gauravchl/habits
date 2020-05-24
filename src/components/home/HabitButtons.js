@@ -30,7 +30,8 @@ export default (props) => {
       progress++;
     }
 
-    return { total, progress, label: progress };
+    const label = `${progress}/21`;
+    return { total, progress, label };
   };
 
   const getWeekData = (habitId) => {
