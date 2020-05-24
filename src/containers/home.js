@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Home from "../components/home/home";
-import {
-  habits as habitsModel,
-  activities as activitiesModel,
-} from "../models/";
+import React, { useState, useEffect } from 'react';
+import Home from '../components/home/home';
+import { habits as habitsModel, activities as activitiesModel } from '../models/';
 
 export default (props) => {
   const [loading, setLoading] = useState(true);
@@ -12,12 +9,12 @@ export default (props) => {
 
   const fetchData = async () => {
     setLoading(true);
-    let habits = await habitsModel.getAll();
+    let habits = await habitsModel.getUnarchived();
     const activities = await activitiesModel.getAll();
 
     if (!habits || !habits.length) {
       await habitsModel.init();
-      habits = await habitsModel.getAll();
+      habits = await habitsModel.getUnarchived();
     }
     setHabits(habits);
     setActivities(activities);
@@ -28,12 +25,5 @@ export default (props) => {
     fetchData();
   }, []);
 
-  return (
-    <Home
-      loading={loading}
-      habits={habits}
-      activities={activities}
-      reload={fetchData}
-    />
-  );
+  return <Home loading={loading} habits={habits} activities={activities} reload={fetchData} />;
 };

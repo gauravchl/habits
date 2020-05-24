@@ -7,6 +7,11 @@ export default {
     return habits;
   },
 
+  getUnarchived: async () => {
+    const habits = await lf.getItem('habits');
+    return habits.filter((h) => !h.archived);
+  },
+
   add: async (habit) => {
     const { name } = habit || {};
     const habits = await lf.getItem('habits');
