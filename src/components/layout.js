@@ -1,8 +1,8 @@
 import React from 'react';
 import NavButton from './NavButton';
 import styles from './layout.module.scss';
-import { MdHome } from 'react-icons/md';
-import { FaRegChartBar } from 'react-icons/fa';
+import { MdHome, MdSettings } from 'react-icons/md';
+
 import { Link } from 'react-router-dom';
 
 export default ({ children }) => {
@@ -21,9 +21,9 @@ export default ({ children }) => {
             <MdHome size="32" />
           </NavButton>
         </Link>
-        <Link to="/activity">
+        <Link to="/settings">
           <NavButton>
-            <FaRegChartBar size="28" />
+            <MdSettings size="28" />
           </NavButton>
         </Link>
       </div>
