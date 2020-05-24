@@ -47,14 +47,17 @@ export default (props) => {
     const habitActivities = activities.filter((a) => {
       return a.habitId === habitId && isSameMonth(new Date(a.createdAt), new Date());
     });
-
     const progress = habitActivities.map((a) => getDate(new Date(a.createdAt)));
     const label = `${progress.length}/${total}`;
-
     return { total, progress, label };
   };
+
   const getAllData = (habitId) => {
-    return {};
+    const habitActivities = activities.filter((a) => a.habitId === habitId);
+    const total = habitActivities.length;
+    const progress = habitActivities.length;
+    const label = progress;
+    return { total, progress, label };
   };
 
   const getData = (habitId) => {
