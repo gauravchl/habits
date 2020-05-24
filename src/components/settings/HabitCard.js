@@ -19,7 +19,7 @@ export default (props) => {
   };
 
   return (
-    <div className={styles.card + ' my-4 p-4'}>
+    <div className={styles.card + ' my-2 p-4'}>
       {habit.name}
       <div>
         <If exp={!archived}>

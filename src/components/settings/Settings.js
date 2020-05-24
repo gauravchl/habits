@@ -21,7 +21,7 @@ export default (props) => {
         ))}
       </div>
       <If exp={archivedHabits && archivedHabits.length}>
-        <h6 className="my-5 font-weight-light text-primary text-left">
+        <h6 className="mt-5 font-weight-light text-primary text-left">
           Archived <span className="font-weight-bold">Habits!</span>
         </h6>
         <hr />
